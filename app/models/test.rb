@@ -1,5 +1,5 @@
 class Test < ApplicationRecord
-  serialize :choice #配列で保存
+  has_one_attached :image
 
   with_options presence: true do
     validates :question

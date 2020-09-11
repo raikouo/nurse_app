@@ -1,0 +1,14 @@
+<% @tests.each do |test| %>
+  <%= "第#{test.time}回" %><br>
+  <%= "問題：#{test.number}" %><br>
+  <% if test.category != nil %>
+    <%= test.category %><br>
+  <% end %>
+  <%= test.question %><br>
+  <% if test.image.present? %>
+    <%= image_tag test.image %><br>
+  <% end %>
+  <%= test.choice %><br>
+  <%= "答え：#{test.answer}" %><br>
+  <br>
+<% end %>

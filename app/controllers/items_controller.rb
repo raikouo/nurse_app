@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    @test = Test.all.sample(1)
   end
 
   def new

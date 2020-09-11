@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 2020_09_10_025736) do
   end
 
   create_table "tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "time", null: false
+    t.integer "exam_id", null: false
     t.integer "number", null: false
     t.text "question", null: false
     t.text "choice", null: false
     t.integer "answer", null: false
-    t.string "category"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

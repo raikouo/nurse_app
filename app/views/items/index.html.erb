@@ -1,5 +1,21 @@
 <%= render "shared/header" %>
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<h1>#index</h1>
+<p>ランダム出題</p>
+<% @test.each do |test| %>
+  <%= "第#{test.exam.name}回" %><br>
+  <%= "問題：#{test.number}" %><br>
+  <% if test.category != nil %>
+    <%= test.category.name %><br>
+  <% end %>
+  <%= test.question %><br>
+  <% if test.image.present? %>
+    <%= image_tag test.image %><br>
+  <% end %>
+  <% test.choice.lines.each_with_index do |line,i| %>
+    <%= "#{ i+1 }：" %><%= line %><br>
+  <% end %>
+  <%= "答え：#{test.answer}" %><br>
+  <br>
+<% end %>
 <%= link_to 'new', new_item_path %>
 <%= link_to 'search', search_items_path %>

@@ -1,7 +1,7 @@
 <%= render "shared/header" %>
 <h1>#index</h1>
 <p>ランダム出題</p>
-<% @test.each do |test| %>
+<% @tests.sample(1).each do |test| %>
   <%= "第#{test.exam.name}回" %><br>
   <%= "問題：#{test.number}" %><br>
   <% if test.category != nil %>
@@ -17,5 +17,26 @@
   <%= "答え：#{test.answer}" %><br>
   <br>
 <% end %>
+
+<%# search %>
+<%= search_form_for @p, url: search_items_path do |f| %>
+  <%= f.label :question_cont, '問題文：' , class: 'label' %>
+  <br>
+  <%= f.text_field :question_cont, placeholder: "キーワード", class: 'field' %>
+  <br>
+  <%= f.label :choice_cont, '選択肢：' , class: 'label' %>
+  <br>
+  <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'field' %>
+  <br>
+  <%= f.label :exam_id_in, '第◯◯回：' , class: 'label' %>
+  <br>
+  <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
+  <br>
+  <%= f.label :category_id_in, 'カテゴリー：' , class: 'label' %>
+  <br>
+  <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
+  <br>
+  <%= f.submit '検索する' , class: 'submit-btn'%>
+<% end %>
+<%# /search %>
 <%= link_to 'new', new_item_path %>
-<%= link_to 'search', search_items_path %>

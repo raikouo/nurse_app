@@ -1,17 +1,21 @@
 <h1>#search</h1>
-<% @tests.each do |test| %>
-  <%= "第#{test.exam.name}回" %><br>
-  <%= "問題：#{test.number}" %><br>
-  <% if test.category != nil %>
-    <%= test.category.name %><br>
+<%if @tests.count != 0 %>
+  <% @tests.each do |test| %>
+    <%= "第#{test.exam.name}回" %><br>
+    <%= "問題：#{test.number}" %><br>
+    <% if test.category != nil %>
+      <%= test.category.name %><br>
+    <% end %>
+    <%= test.question %><br>
+    <% if test.image.present? %>
+      <%= image_tag test.image %><br>
+    <% end %>
+    <% test.choice.lines.each_with_index do |line,i| %>
+      <%= "#{ i+1 }：" %><%= line %><br>
+    <% end %>
+    <%= "答え：#{test.answer}" %><br>
+    <br>
   <% end %>
-  <%= test.question %><br>
-  <% if test.image.present? %>
-    <%= image_tag test.image %><br>
-  <% end %>
-  <% test.choice.lines.each_with_index do |line,i| %>
-    <%= "#{ i+1 }：" %><%= line %><br>
-  <% end %>
-  <%= "答え：#{test.answer}" %><br>
-  <br>
+<% else %>
+  <p>問題がありません</p>
 <% end %>

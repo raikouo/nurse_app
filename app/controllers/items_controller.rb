@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+
+  before_action :search_test, only: [:index, :search]
+
   def index
-    @test = Test.all.sample(1)
+    @tests = Test.all
   end
 
   def new
@@ -19,6 +22,7 @@ class ItemsController < ApplicationController
 
   def search
     @tests = Test.all
+    @results = @p.result
   end
 
   private
@@ -26,4 +30,11 @@ class ItemsController < ApplicationController
   def test_params
     params.require(:test).permit(:time, :number, :question, :choice, :answer, :category, :image)
   end
+
+  def search_test
+    @categories = Category.where.not(id: 0)
+    @exams = Exam.where.not(id: 0)
+    @p = Test.ransack(params[:q])
+  end
+
 end

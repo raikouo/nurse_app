@@ -1,19 +1,42 @@
 <h1>#search</h1>
-<%if @tests.count != 0 %>
-  <% @tests.each do |test| %>
-    <%= "第#{test.exam.name}回" %><br>
-    <%= "問題：#{test.number}" %><br>
-    <% if test.category != nil %>
-      <%= test.category.name %><br>
+<%= link_to 'top', root_path %>
+<%# search %>
+<%= search_form_for @p, url: search_items_path do |f| %>
+  <%= f.label :question_cont, '問題文：' , class: 'label' %>
+  <br>
+  <%= f.text_field :question_cont, placeholder: "キーワード", class: 'field' %>
+  <br>
+  <%= f.label :choice_cont, '選択肢：' , class: 'label' %>
+  <br>
+  <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'field' %>
+  <br>
+  <%= f.label :exam_id_in, '第◯◯回：' , class: 'label' %>
+  <br>
+  <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
+  <br>
+  <%= f.label :category_id_in, 'カテゴリー：' , class: 'label' %>
+  <br>
+  <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
+  <br>
+  <%= f.submit '検索する' , class: 'submit-btn'%>
+<% end %>
+<%# /search %>
+<br>
+<%if @results.count != 0 %>
+  <% @results.each do |result| %>
+    <%= "第#{result.exam.name}回" %><br>
+    <%= "問題：#{result.number}" %><br>
+    <% if result.category != nil %>
+      <%= result.category.name %><br>
     <% end %>
-    <%= test.question %><br>
-    <% if test.image.present? %>
-      <%= image_tag test.image %><br>
+    <%= result.question %><br>
+    <% if result.image.present? %>
+      <%= image_tag result.image %><br>
     <% end %>
-    <% test.choice.lines.each_with_index do |line,i| %>
+    <% result.choice.lines.each_with_index do |line,i| %>
       <%= "#{ i+1 }：" %><%= line %><br>
     <% end %>
-    <%= "答え：#{test.answer}" %><br>
+    <%= "答え：#{result.answer}" %><br>
     <br>
   <% end %>
 <% else %>

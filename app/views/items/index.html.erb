@@ -1,50 +1,63 @@
 <%= render "shared/header" %>
-<h1>#index</h1>
-<p>ランダム出題</p>
-<% @tests.sample(1).each do |test| %>
-  <%= "第#{test.exam.name}回" %><br>
-  <%= "問題：#{test.number}" %><br>
-  <% if test.category != nil %>
-    <%= test.category.name %><br>
-  <% end %>
-  <%= test.question %><br>
-  <% if test.image.present? %>
-    <%= image_tag test.image %><br>
-  <% end %>
-  <% test.choice.lines.each_with_index do |line,i| %>
-    <%= content_tag(:div, class: "exam#{test.id.to_s + (i + 1).to_s}", id: "exam#{test.id.to_s + (i + 1).to_s}") do %>
-    <%= "#{ i+1 }：" %><%= line %><% end %>
-  <% end %>
-  <%= "答え：#{test.answer}" %><br>
-  <%if user_signed_in? %>
-    <% if !Study.exists?(user_id:current_user.id,test_id:test.id) %>
-    <%= link_to "覚えた", item_studies_path(test.id), method: :post %>
-    <% else %>
-    <%= link_to "覚えた解除", item_study_path(test.id,test.id), method: :delete %>
-    <% end %>
-  <% end %>
-      <%= content_tag(:div, "覚えた", class: "exam-checked", 'data-id': test.id) %>
-<% end %>
+<div class = "main-wrapper" >
+  <div class = "left-wrapper" >
+  </div>
+  <div class = "contents-wrapper" >
+    <h1>#index</h1>
+    <%= link_to 'new', new_item_path %>
+    <div class = "exam-content" >
+      <p>ランダム出題</p>
+      <% @tests.sample(1).each do |test| %>
+        <%= "第#{test.exam.name}回" %><br>
+        <%= "問題：#{test.number}" %><br>
+        <% if test.category != nil %>
+          <%= test.category.name %><br>
+        <% end %>
+        <%= test.question %><br>
+        <% if test.image.present? %>
+          <%= image_tag test.image, class: "exam-image" %><br>
+        <% end %>
+        <% test.choice.lines.each_with_index do |line,i| %>
+          <%= content_tag(:div, class: "exam-btn", id: "exam#{test.id.to_s + (i + 1).to_s}") do %>
+          <%= "#{ i+1 }：" %><%= line %><% end %>
+        <% end %>
+        <%= "答え：#{test.answer}" %><br>
+        <%if user_signed_in? %>
+          <% if !Study.exists?(user_id:current_user.id,test_id:test.id) %>
+          <%= link_to "覚えた", item_studies_path(test.id), method: :post %>
+          <% else %>
+          <%= link_to "覚えた解除", item_study_path(test.id,test.id), method: :delete %>
+          <% end %>
+        <% end %>
+            <%= content_tag(:div, "覚えた", class: "exam-checked", 'data-id': test.id) %>
+      <% end %>
+    </div>
 
-<%# search %>
-<%= search_form_for @p, url: search_items_path do |f| %>
-  <%= f.label :question_cont, '問題文：' , class: 'label' %>
-  <br>
-  <%= f.text_field :question_cont, placeholder: "キーワード", class: 'field' %>
-  <br>
-  <%= f.label :choice_cont, '選択肢：' , class: 'label' %>
-  <br>
-  <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'field' %>
-  <br>
-  <%= f.label :exam_id_in, '第◯◯回：' , class: 'label' %>
-  <br>
-  <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
-  <br>
-  <%= f.label :category_id_in, 'カテゴリー：' , class: 'label' %>
-  <br>
-  <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
-  <br>
-  <%= f.submit '検索する' , class: 'submit-btn'%>
-<% end %>
-<%# /search %>
-<%= link_to 'new', new_item_path %>
+    <div class = "search-content" >
+      <%# search %>
+      <%= search_form_for @p, url: search_items_path do |f| %>
+        <%= f.label :question_cont, '問題文：' , class: 'exam-label' %>
+        <br>
+        <%= f.text_field :question_cont, placeholder: "キーワード", class: 'exam-field' %>
+        <br>
+        <%= f.label :choice_cont, '選択肢：' , class: 'exam-label' %>
+        <br>
+        <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'exam-field' %>
+        <br>
+        <%= f.label :exam_id_in, '第◯◯回：' , class: 'exam-label' %>
+        <br>
+        <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
+        <br>
+        <%= f.label :category_id_in, 'カテゴリー：' , class: 'exam-label' %>
+        <br>
+        <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
+        <br>
+        <%= f.submit '検索する' , class: 'submit-btn'%>
+      <% end %>
+      <%# /search %>
+    </div>
+  </div>
+  <div class = "right-wrapper" >
+  </div>
+</div>
+<%= render "shared/footer" %>

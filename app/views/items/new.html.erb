@@ -1,25 +1,35 @@
- 
-<%= form_with model:@test, url: items_path, local: true do |f| %>
+<%= render "shared/header" %>
+<div class = "main-wrapper" >
+  <div class = "left-wrapper">
+  </div>
+  <div class = "contents-wrapper" >
+    <div class = "search-content" >
+      <%= form_with model:@test, url: items_path, local: true do |f| %>
 
-  <%# error%>
-  <%= render 'shared/error_messages', model: f.object %>
-  <%# /error%>
-  画像<br>
-  <%= f.file_field :image %><br>
-  第◯◯回<br>
-  <%= f.collection_select(:exam_id, Exam.all, :id, :name, {}, {}) %><br>
-  番号<br>
-  <%= f.text_field :number %><br>
-  問題<br>
-  <%= f.text_area :question %><br>
-  選択肢<br>
-  <%= f.text_area :choice %><br>
-  答え<br>
-  <%= f.text_field :answer %><br>
-  カテゴリー<br>
-  <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {}) %><br>
+        <%# error%>
+        <%= render 'shared/error_messages', model: f.object %>
+        <%# /error%>
+        画像<br>
+        <%= f.file_field :image, class: "file-field" %><br>
+        第◯◯回<br>
+        <%= f.collection_select(:exam_id, Exam.all, :id, :name, {}, {class: "field"}) %><br>
+        番号<br>
+        <%= f.text_field :number, class: "field" %><br>
+        問題<br>
+        <%= f.text_area :question, class: "text-area" %><br>
+        選択肢<br>
+        <%= f.text_area :choice, class: "text-area" %><br>
+        答え<br>
+        <%= f.text_field :answer, class: "field" %><br>
+        カテゴリー<br>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {},{class: "field"}) %><br>
+        
+        <%= f.submit "出題する", class: "submit-btn" %><br>
 
-  <%= f.submit "出題する" %>
-  <%=link_to 'もどる', root_path%>
-
-<% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class = "right-wrapper">
+  </div>
+</div>
+<%= render "shared/footer" %>

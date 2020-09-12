@@ -1,52 +1,70 @@
-<h1>#search</h1>
-<%= link_to 'top', root_path %>
-<%# search %>
-<%= search_form_for @p, url: search_items_path do |f| %>
-  <%= f.label :question_cont, '問題文：' , class: 'label' %>
-  <br>
-  <%= f.text_field :question_cont, placeholder: "キーワード", class: 'field' %>
-  <br>
-  <%= f.label :choice_cont, '選択肢：' , class: 'label' %>
-  <br>
-  <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'field' %>
-  <br>
-  <%= f.label :exam_id_in, '第◯◯回：' , class: 'label' %>
-  <br>
-  <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
-  <br>
-  <%= f.label :category_id_in, 'カテゴリー：' , class: 'label' %>
-  <br>
-  <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
-  <br>
-  <%= f.submit '検索する' , class: 'submit-btn'%>
-<% end %>
-<%# /search %>
-<br>
-<%if @results.count != 0 %>
-  <% @results.each do |result| %>
-    <%= "第#{result.exam.name}回" %><br>
-    <%= "問題：#{result.number}" %><br>
-    <% if result.category != nil %>
-      <%= result.category.name %><br>
-    <% end %>
-    <%= result.question %><br>
-    <% if result.image.present? %>
-      <%= image_tag result.image %><br>
-    <% end %>
-    <% result.choice.lines.each_with_index do |line,i| %>
-      <%= content_tag(:div, class: "exam#{result.id.to_s + (i + 1).to_s}", id: "exam#{result.id.to_s + (i + 1).to_s}") do %>
-      <%= "#{ i+1 }：" %><%= line %><% end %>
-    <% end %>
-    <%= "答え：#{result.answer}" %><br>
-    <%if user_signed_in? %>
-      <% if !Study.exists?(user_id:current_user.id,test_id:result.id) %>
-      <%= link_to "覚えた", item_studies_path(result.id), method: :post %>
-      <% else %>
-      <%= link_to "覚えた解除", item_study_path(result.id,result.id), method: :delete %>
+<%= render "shared/header" %>
+<div class = "main-wrapper" >
+  <div class = "left-wrapper">
+  </div>
+  <div class = "contents-wrapper" >
+    <h1>#search</h1>
+    <%= link_to 'top', root_path %>
+    <div class = "search-content" >
+      <%# search %>
+      <%= search_form_for @p, url: search_items_path do |f| %>
+        <%= f.label :question_cont, '問題文：' , class: 'exam-label' %>
+        <br>
+        <%= f.text_field :question_cont, placeholder: "キーワード", class: 'exam-field' %>
+        <br>
+        <%= f.label :choice_cont, '選択肢：' , class: 'exam-label' %>
+        <br>
+        <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'exam-field' %>
+        <br>
+        <%= f.label :exam_id_in, '第◯◯回：' , class: 'exam-label' %>
+        <br>
+        <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
+        <br>
+        <%= f.label :category_id_in, 'カテゴリー：' , class: 'exam-label' %>
+        <br>
+        <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
+        <br>
+        <%= f.submit '検索する' , class: 'submit-btn'%>
       <% end %>
+      <%# /search %>
+    </div>
+    
+    
+    <%if @results.count != 0 %>
+      <% @results.each do |result| %>
+        <div class = "exam-content" >
+          <%= "第#{result.exam.name}回" %><br>
+          <%= "問題：#{result.number}" %><br>
+          <% if result.category != nil %>
+            <%= result.category.name %><br>
+          <% end %>
+          <%= result.question %><br>
+          <% if result.image.present? %>
+            <%= image_tag result.image, class: "exam-image" %><br>
+          <% end %>
+          <% result.choice.lines.each_with_index do |line,i| %>
+            <%= content_tag(:div, class: "exam-btn", id: "exam#{result.id.to_s + (i + 1).to_s}") do %>
+            <%= "#{ i+1 }：" %><%= line %><% end %>
+          <% end %>
+          <%= "答え：#{result.answer}" %><br>
+          <%if user_signed_in? %>
+            <% if !Study.exists?(user_id:current_user.id,test_id:result.id) %>
+            <%= link_to "覚えた", item_studies_path(result.id), method: :post %>
+            <% else %>
+            <%= link_to "覚えた解除", item_study_path(result.id,result.id), method: :delete %>
+            <% end %>
+          <% end %>
+          <%= content_tag(:div, "覚えた", class: "exam-checked", 'data-id': result.id) %>
+        </div>  
+      <% end %>
+    <% else %>
+      <div class = "exam-content" >
+        <p>問題がありません</p>
+      </div>
     <% end %>
-    <%= content_tag(:div, "覚えた", class: "exam-checked", 'data-id': result.id) %>
-  <% end %>
-<% else %>
-  <p>問題がありません</p>
-<% end %>
+
+  </div>
+  <div class = "right-wrapper">
+  </div>
+</div>
+<%= render "shared/footer" %>

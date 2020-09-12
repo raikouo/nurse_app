@@ -1,6 +1,7 @@
 (1..3).each do |i|
   (1..20).each do |j|
     Test.create(
+      user_id:1,
       exam_id:i,
       number:j,
       question: "#{j}番目の問題です！",

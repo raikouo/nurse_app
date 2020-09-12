@@ -7,7 +7,7 @@
   画像<br>
   <%= f.file_field :image %><br>
   第◯◯回<br>
-  <%= f.text_field :time %><br>
+  <%= f.collection_select(:exam_id, Exam.all, :id, :name, {}, {}) %><br>
   番号<br>
   <%= f.text_field :number %><br>
   問題<br>
@@ -17,7 +17,7 @@
   答え<br>
   <%= f.text_field :answer %><br>
   カテゴリー<br>
-  <%= f.text_field :category %><br>
+  <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {}) %><br>
 
   <%= f.submit "出題する" %>
   <%=link_to 'もどる', root_path%>

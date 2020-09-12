@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_10_025736) do
+ActiveRecord::Schema.define(version: 2020_09_11_204114) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,15 +33,27 @@ ActiveRecord::Schema.define(version: 2020_09_10_025736) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "studies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "test_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_studies_on_test_id"
+    t.index ["user_id", "test_id"], name: "index_studies_on_user_id_and_test_id", unique: true
+    t.index ["user_id"], name: "index_studies_on_user_id"
+  end
+
   create_table "tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "exam_id", null: false
     t.integer "number", null: false
     t.text "question", null: false
     t.text "choice", null: false
     t.integer "answer", null: false
-    t.integer "category_id"
+    t.integer "category_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -58,4 +70,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_025736) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "studies", "tests"
+  add_foreign_key "studies", "users"
+  add_foreign_key "tests", "users"
 end

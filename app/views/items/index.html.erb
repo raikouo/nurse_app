@@ -12,10 +12,18 @@
     <%= image_tag test.image %><br>
   <% end %>
   <% test.choice.lines.each_with_index do |line,i| %>
-    <%= "#{ i+1 }：" %><%= line %><br>
+    <%= content_tag(:div, class: "exam#{test.id.to_s + (i + 1).to_s}", id: "exam#{test.id.to_s + (i + 1).to_s}") do %>
+    <%= "#{ i+1 }：" %><%= line %><% end %>
   <% end %>
   <%= "答え：#{test.answer}" %><br>
-  <br>
+  <%if user_signed_in? %>
+    <% if !Study.exists?(user_id:current_user.id,test_id:test.id) %>
+    <%= link_to "覚えた", item_studies_path(test.id), method: :post %>
+    <% else %>
+    <%= link_to "覚えた解除", item_study_path(test.id,test.id), method: :delete %>
+    <% end %>
+  <% end %>
+      <%= content_tag(:div, "覚えた", class: "exam-checked", 'data-id': test.id) %>
 <% end %>
 
 <%# search %>

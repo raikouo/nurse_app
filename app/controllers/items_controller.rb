@@ -25,10 +25,22 @@ class ItemsController < ApplicationController
     @results = @p.result
   end
 
+  def checked
+    post = Test.find(params[:id])
+    if post.checked
+      post.update(checked: false)
+    else
+      post.update(checked: true)
+    end
+
+    test = Test.find(params[:id])
+    render json: { post: test }
+  end
+
   private
 
   def test_params
-    params.require(:test).permit(:time, :number, :question, :choice, :answer, :category, :image)
+    params.require(:test).permit(:exam_id, :number, :question, :choice, :answer, :category_id, :image).merge(user_id: current_user.id)
   end
 
   def search_test

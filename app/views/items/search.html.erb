@@ -34,10 +34,18 @@
       <%= image_tag result.image %><br>
     <% end %>
     <% result.choice.lines.each_with_index do |line,i| %>
-      <%= "#{ i+1 }：" %><%= line %><br>
+      <%= content_tag(:div, class: "exam#{result.id.to_s + (i + 1).to_s}", id: "exam#{result.id.to_s + (i + 1).to_s}") do %>
+      <%= "#{ i+1 }：" %><%= line %><% end %>
     <% end %>
     <%= "答え：#{result.answer}" %><br>
-    <br>
+    <%if user_signed_in? %>
+      <% if !Study.exists?(user_id:current_user.id,test_id:result.id) %>
+      <%= link_to "覚えた", item_studies_path(result.id), method: :post %>
+      <% else %>
+      <%= link_to "覚えた解除", item_study_path(result.id,result.id), method: :delete %>
+      <% end %>
+    <% end %>
+    <%= content_tag(:div, "覚えた", class: "exam-checked", 'data-id': result.id) %>
   <% end %>
 <% else %>
   <p>問題がありません</p>

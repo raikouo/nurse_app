@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   before_action :search_test, only: [:index, :search]
 
   def index
@@ -48,5 +47,4 @@ class ItemsController < ApplicationController
     @exams = Exam.where.not(id: 0)
     @p = Test.ransack(params[:q])
   end
-
 end

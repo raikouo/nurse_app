@@ -6,7 +6,7 @@ class Test < ApplicationRecord
   belongs_to :user
   has_many :studies, dependent: :destroy
   has_many :study_users, through: :studies, source: :user
-  
+
   with_options presence: true do
     validates :question
     validates :choice
@@ -21,5 +21,4 @@ class Test < ApplicationRecord
     validates :number
     validates :answer
   end
-  
 end

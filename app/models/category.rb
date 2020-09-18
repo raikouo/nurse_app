@@ -11,4 +11,4 @@ class Category < ActiveHash::Base
     { id: 8, name: 'カテゴリ8' },
     { id: 9, name: 'カテゴリ9' }
   ]
-  end
+end

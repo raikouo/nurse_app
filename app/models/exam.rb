@@ -5,4 +5,4 @@ class Exam < ActiveHash::Base
     { id: 2, name: 102 },
     { id: 3, name: 103 }
   ]
-  end
+end

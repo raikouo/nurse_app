@@ -8,7 +8,7 @@ function check() {
     post.addEventListener("click", () => {
       const postId = post.getAttribute('data-id');
       const XHR = new XMLHttpRequest();
-      XHR.open("GET", `/items/${postId}`, true);
+      XHR.open("POST", `/items/${postId}/studies`, true);
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
@@ -17,11 +17,12 @@ function check() {
           return null; 
         }
         const item = XHR.response.post;
-        if (item.checked === true) {
-          post.setAttribute("data-check", "true");
-        } else if (item.checked === false) {
-          post.removeAttribute("data-check");
-        }
+        console.log("ok");
+        // if (item.checked === true) {
+        //   post.setAttribute("data-check", "true");
+        // } else if (item.checked === false) {
+        //   post.removeAttribute("data-check");
+        // }
       };
   });
 });

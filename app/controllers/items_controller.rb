@@ -8,6 +8,11 @@ class ItemsController < ApplicationController
   def new
     @test = Test.new
   end
+  
+  def show
+    @test = Test.find(params[:id])
+    @comments = @test.comments.includes(:user)
+  end
 
   def create
     @test = Test.new(test_params)

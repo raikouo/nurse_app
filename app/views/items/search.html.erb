@@ -31,11 +31,39 @@
     <%if @results.count != 0 %>
       <% @results.each do |result| %>
         <div class = "exam-content" >
-          <%= "第#{result.exam.name}回" %><br>
-          <%= "問題：#{result.number}" %><br>
-          <% if result.category != nil %>
-            <%= result.category.name %><br>
-          <% end %>
+
+
+
+          <div class = "exam-justify" >
+
+            <div class = "exam-justify-box1">
+              <%= "第#{result.exam.name}回" %><br>
+              <%= "問題：#{result.number}" %><br>
+              <% if result.category != nil %>
+                <%= result.category.name %><br>
+              <% end %>
+            </div>
+
+            <div class = "exam-justify-box2">
+              <%if user_signed_in? %>
+                <% if !Study.exists?(user_id:current_user.id,test_id:result.id) %>
+                  <%= link_to image_tag("tako.png", class: "octopus-false", 'title': "クリックで学習済"), item_studies_path(result.id), method: :post %>
+                <% else %>
+                  <%= link_to image_tag("tako_sumi.png", class: "octopus-true", 'title': "クリックで学習未"), item_study_path(result.id,result.id), method: :delete %>
+                <% end %>
+              <% end %>
+            </div>
+            
+            <div class = "exam-justify-box3">
+              <%= link_to item_path(result.id) do %>
+                <div class="arrow_box">
+                  <%= "コメント：#{result.comments.count}件" %>
+                </div>
+              <% end %>
+            </div>
+          
+          </div>
+
           <%= result.question %><br>
           <% if result.image.present? %>
             <%= image_tag result.image, class: "exam-image" %><br>

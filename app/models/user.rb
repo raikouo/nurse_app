@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :tests
   has_many :studies, dependent: :destroy
   has_many :study_tests, through: :studies, source: :test
-
+  has_many :comments, dependent: :destroy
+  
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
 
   validates :nickname, uniqueness: { case_sensitive: true }, presence: true

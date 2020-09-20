@@ -1,0 +1,85 @@
+<%= render "shared/header" %>
+  <div class = "main-wrapper" >
+    <div class = "left-wrapper" >
+    </div>
+    <div class = "contents-wrapper" >
+      <div class = "exam-content" >
+
+        <div class = "exam-justify">
+
+          <div class = "exam-justify-box1">
+            <%= "第#{@test.exam.name}回" %><br>
+            <%= "問題：#{@test.number}" %><br>
+            <% if @test.category != nil %>
+              <%= @test.category.name %><br>
+            <% end %>
+          </div>
+
+          <div class = "exam-justify-box1">
+            <%if user_signed_in? %>
+              <% if !Study.exists?(user_id:current_user.id,test_id:@test.id) %>
+                <%= link_to image_tag("tako.png", class: "octopus-false", 'title': "クリックで学習済" ), item_studies_path(@test.id), method: :post %>
+              <% else %>
+                <%= link_to image_tag("tako_sumi.png", class: "octopus-true", 'title': "クリックで学習未" ), item_study_path(@test.id,@test.id), method: :delete %>
+              <% end %>
+            <% end %>
+          </div>
+        
+        </div>
+
+        <%= @test.question %><br>
+        <% if @test.image.present? %>
+          <%= image_tag @test.image, class: "exam-image" %><br>
+        <% end %>
+        <% @test.choice.lines.each_with_index do |line,i| %>
+          <%= content_tag(:div, class: "exam-btn", id: "exam#{@test.id.to_s + (i + 1).to_s}") do %>
+          <%= "#{ i+1 }：" %><%= line %><% end %>
+        <% end %>
+        <%= content_tag(:div, class: "ans-visible", id: "exam#{@test.id.to_s}") do %>
+          <%= content_tag(:div, id: "exam#{@test.id.to_s}ans#{@test.answer.to_s}") do %>
+            <%= "答え：#{@test.answer}" %>
+          <% end %>
+          <%if user_signed_in? %>
+            <% if !Study.exists?(user_id:current_user.id,test_id:@test.id) %>
+              <%= link_to image_tag("tako.png", class: "octopus-false", 'title': "クリックで学習済" ), item_studies_path(@test.id), method: :post %>
+            <% else %>
+              <%= link_to image_tag("tako_sumi.png", class: "octopus-true", 'title': "クリックで学習未" ), item_study_path(@test.id,@test.id), method: :delete %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class = "comment-content" >
+        <div class="comment-container">
+          <% if current_user %>
+            <%= form_with( model: @comment, url: item_comments_path(@test.id), local: true) do |form| %>
+              <%= form.text_area :text, placeholder: "400文字以内で入力して下さい", rows: "4", class: 'comment-area', maxlength:"400" %><br>
+              <%= form.submit "コメントする", class: 'submit-btn' %>
+            <% end %>
+          <% else %>
+            <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+          <% end %>
+          <% if !@comments.blank? %>
+            <div class= "comment-field">
+              <% @comments.reverse_each do |comment| %>
+                <div class="comment-name">
+                  <%= comment.user.nickname %>
+                </div><br>
+                <%= safe_join(comment.text.split("\n"),tag(:br)) %>
+                <div class="comment-time">
+                  <%= l comment.created_at %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class = "right-wrapper" >
+    </div>
+  </div>
+<%= render "shared/footer" %>

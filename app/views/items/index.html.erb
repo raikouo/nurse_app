@@ -3,16 +3,40 @@
   <div class = "left-wrapper" >
   </div>
   <div class = "contents-wrapper" >
-    <h1>#index</h1>
     <%= link_to 'new', new_item_path %>
     <div class = "exam-content" >
       <p>ランダム出題</p>
       <% @tests.sample(1).each do |test| %>
-        <%= "第#{test.exam.name}回" %><br>
-        <%= "問題：#{test.number}" %><br>
-        <% if test.category != nil %>
-          <%= test.category.name %><br>
-        <% end %>
+        <div class = "exam-justify" >
+
+          <div class = "exam-justify-box1" >
+            <%= "第#{test.exam.name}回" %><br>
+            <%= "問題：#{test.number}" %><br>
+            <% if test.category != nil %>
+              <%= test.category.name %><br>
+            <% end %>
+          </div>
+
+          <div class = "exam-justify-box2" >
+            <%if user_signed_in? %>
+              <% if !Study.exists?(user_id:current_user.id,test_id:test.id) %>
+                <%= link_to image_tag("tako.png", class: "octopus-false", 'title': "クリックで学習済" ), item_studies_path(test.id), method: :post %>
+              <% else %>
+                <%= link_to image_tag("tako_sumi.png", class: "octopus-true", 'title': "クリックで学習未" ), item_study_path(test.id,test.id), method: :delete %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class = "exam-justify-box3" >
+            <%= link_to item_path(test.id) do %>
+              <div class="arrow_box">
+                <%= "コメント：#{test.comments.count}件" %>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+
         <%= test.question %><br>
         <% if test.image.present? %>
           <%= image_tag test.image, class: "exam-image" %><br>
@@ -27,9 +51,9 @@
           <% end %>
           <%if user_signed_in? %>
             <% if !Study.exists?(user_id:current_user.id,test_id:test.id) %>
-            <%= link_to image_tag("tako.png", class: "octopus-false", 'title': "クリックで学習済" ), item_studies_path(test.id), method: :post %>
+              <%= link_to image_tag("tako.png", class: "octopus-false", 'title': "クリックで学習済" ), item_studies_path(test.id), method: :post %>
             <% else %>
-            <%= link_to image_tag("tako_sumi.png", class: "octopus-true", 'title': "クリックで学習未" ), item_study_path(test.id,test.id), method: :delete %>
+              <%= link_to image_tag("tako_sumi.png", class: "octopus-true", 'title': "クリックで学習未" ), item_study_path(test.id,test.id), method: :delete %>
             <% end %>
           <% end %>
         <% end %>

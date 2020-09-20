@@ -6,6 +6,7 @@ class Test < ApplicationRecord
   belongs_to :user
   has_many :studies, dependent: :destroy
   has_many :study_users, through: :studies, source: :user
+  has_many :comments, dependent: :destroy
 
   with_options presence: true do
     validates :question

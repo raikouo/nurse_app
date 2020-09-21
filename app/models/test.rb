@@ -13,7 +13,7 @@ class Test < ApplicationRecord
     validates :choice
   end
 
-  with_options presence: true, numericality: { other_than: 0 } do
+  with_options presence: true, numericality: { other_than: 0, message: 'を選択して下さい' } do
     validates :exam_id
     validates :category_id
   end

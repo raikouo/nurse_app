@@ -2,3 +2,15 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
+
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+      test:
+        exam_id: 開催回
+        number: 問題番号
+        question: 問題文
+        choice: 選択肢
+        answer: 答え
+        category_id: カテゴリー

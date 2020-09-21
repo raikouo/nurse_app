@@ -37,7 +37,7 @@
 
         </div>
 
-        <%= test.question %><br>
+        <%= safe_join(test.question.split("\n"),tag(:br)) %><br>
         <% if test.image.present? %>
           <%= image_tag test.image, class: "exam-image" %><br>
         <% end %>

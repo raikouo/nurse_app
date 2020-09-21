@@ -10,10 +10,10 @@
           <div class = "exam-justify-box1">
             <%= "第#{@test.exam.name}回" %>
             <%= "-#{@test.zone.name}-" %><br>
-            <%= "問題：#{@test.number}" %><br>
             <% if @test.category != nil %>
-              <%= @test.category.name %><br>
+              <%= "＜#{@test.category.name}＞" %><br>
             <% end %>
+            <%= "問題：#{@test.number}" %><br>
           </div>
 
           <div class = "exam-justify-box1">

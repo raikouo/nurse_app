@@ -6,33 +6,39 @@
     <div class = "search-content" >
       <%# search %>
       <%= search_form_for @p, url: search_items_path do |f| %>
-        <%= f.label :question_cont, '問題文：' , class: 'exam-label' %>
-        <br>
-        <%= f.text_field :question_cont, placeholder: "キーワード", class: 'exam-field' %>
-        <br>
-        <%= f.label :choice_cont, '選択肢：' , class: 'exam-label' %>
-        <br>
-        <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'exam-field' %>
-        <br>
-        <%= f.label :exam_id_in, '第◯◯回：' , class: 'exam-label' %>
-        <br>
-        <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
-        <br>
-        <%= f.label :category_id_in, 'カテゴリー：' , class: 'exam-label' %>
-        <br>
-        <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
-        <br>
+
+        <div class = "search-justify">
+          <div class = "search-justify-box1">
+            <%= f.label :question_cont, '問題文：' , class: 'exam-label' %>
+            <br>
+            <%= f.text_field :question_cont, placeholder: "キーワード", class: 'exam-field' %>
+            <br>
+            <%= f.label :choice_cont, '選択肢：' , class: 'exam-label' %>
+            <br>
+            <%= f.text_field :choice_cont, placeholder: "キーワード", class: 'exam-field' %>
+            <br>
+            <%= f.label :exam_id_in, '第◯◯回：' , class: 'exam-label' %>
+            <br>
+            <%= f.collection_check_boxes :exam_id_in, @exams, :id, :name %>
+            <br>
+            <%= f.label :category_id_in, 'カテゴリー：' , class: 'exam-label' %>
+            <br>
+            <%= f.collection_check_boxes :category_id_in, @categories, :id, :name %>
+            <br>
+          </div>
+          <div class = "search-justify-box2">
+            <%= image_tag "search_mushimegane.png", width: "50%" %>
+          </div>
+        </div>
+
         <%= f.submit '検索する' , class: 'submit-btn'%>
       <% end %>
       <%# /search %>
     </div>
     
-    
     <%if @results.count != 0 %>
       <% @results.each do |result| %>
         <div class = "exam-content" >
-
-
 
           <div class = "exam-justify" >
 

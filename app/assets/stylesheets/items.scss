@@ -34,6 +34,7 @@
   background-color:rgba(255,255,255,0.7);
   border-radius: 25px;
   padding:10px 40px;
+  word-wrap: break-word;
 }
 
 .search-content {
@@ -42,6 +43,21 @@
   background-color:rgba(255,200,200,0.7);
   border-radius: 25px;
   padding:10px 40px;
+}
+
+.search-justify{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-justify-box1{
+  width:50%;
+}
+
+.search-justify-box2{
+  width:50%;
+  text-align: center;
 }
 
 .label {
@@ -198,6 +214,7 @@
   background-color:rgba(255,255,255,0.7);
   width:100%;
   color:#333;
+  word-wrap: break-word;
 }
 
 .comment-time{

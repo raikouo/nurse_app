@@ -8,7 +8,8 @@
         <div class = "exam-justify">
 
           <div class = "exam-justify-box1">
-            <%= "第#{@test.exam.name}回" %><br>
+            <%= "第#{@test.exam.name}回" %>
+            <%= "-#{@test.zone.name}-" %><br>
             <%= "問題：#{@test.number}" %><br>
             <% if @test.category != nil %>
               <%= @test.category.name %><br>

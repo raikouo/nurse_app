@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_131554) do
 
   create_table "tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "exam_id", null: false
+    t.integer "zone_id", null: false
     t.integer "number", null: false
     t.text "question", null: false
     t.text "choice", null: false

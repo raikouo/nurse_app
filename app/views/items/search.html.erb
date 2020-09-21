@@ -43,7 +43,8 @@
           <div class = "exam-justify" >
 
             <div class = "exam-justify-box1">
-              <%= "第#{result.exam.name}回" %><br>
+              <%= "第#{result.exam.name}回" %>
+              <%= "-#{result.zone.name}-" %><br>
               <%= "問題：#{result.number}" %><br>
               <% if result.category != nil %>
                 <%= result.category.name %><br>

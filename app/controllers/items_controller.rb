@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
   private
 
   def test_params
-    params.require(:test).permit(:exam_id, :number, :question, :choice, :answer, :category_id, :image).merge(user_id: current_user.id)
+    params.require(:test).permit(:exam_id, :zone_id, :number, :question, :choice, :answer, :category_id, :image).merge(user_id: current_user.id)
   end
 
   def search_test

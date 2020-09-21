@@ -9,6 +9,7 @@ ja:
         nickname: ニックネーム
       test:
         exam_id: 開催回
+        zone_id: 時間帯
         number: 問題番号
         question: 問題文
         choice: 選択肢

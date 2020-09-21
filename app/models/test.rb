@@ -1,6 +1,7 @@
 class Test < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :exam
+  belongs_to_active_hash :zone
   belongs_to_active_hash :category
   has_one_attached :image
   belongs_to :user
@@ -16,6 +17,7 @@ class Test < ApplicationRecord
   with_options presence: true, numericality: { other_than: 0, message: 'を選択して下さい' } do
     validates :exam_id
     validates :category_id
+    validates :zone_id
   end
 
   with_options presence: true, numericality: { only_integer: true } do

@@ -2,6 +2,7 @@ class CreateTests < ActiveRecord::Migration[6.0]
   def change
     create_table :tests do |t|
       t.integer :exam_id,     null: false
+      t.integer :zone_id,     null: false
       t.integer :number,      null: false
       t.text :question,       null: false
       t.text :choice,         null: false

@@ -13,6 +13,8 @@
         <%= f.file_field :image, class: "file-field" %><br>
         第◯◯回<br>
         <%= f.collection_select(:exam_id, Exam.all, :id, :name, {}, {class: "field"}) %><br>
+        時間帯<br>
+        <%= f.collection_select(:zone_id, Zone.all, :id, :name, {}, {class: "field"}) %><br>
         番号<br>
         <%= f.text_field :number, class: "field" %><br>
         問題<br>

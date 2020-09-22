@@ -1,24 +1,24 @@
-# アプリケーション名
+## アプリケーション名
 ExamApp
 
-# アプリケーション概要
-試験問題の過去問を学習するアプリケーションです。学習内容を記録し、効率的な学習を支援します。
-今回は作成者の経歴にちなんで看護師国家試験の過去問をサンプルデータとして登録しています。
+## アプリケーション概要
+試験問題の過去問を学習するアプリケーションです。学習内容を記録し、効率的な学習を支援します。<br>
+今回は作成者の経歴にちなんで看護師国家試験の過去問をサンプルデータとして登録しています。<br>
 今後、他の問題形式にも対応出来るよう機能を拡張していきたいです。
 
-# 作成の目的・動機
+## 作成の目的・動機
 
 携帯等の端末で
 
-# URL
+## URL
 http://exam-28713.herokuapp.com/
 
-## テスト用アカウント
+### テスト用アカウント
 USER:admin@example.com
 PASSWORD:1qazxs
 
-利用方法
-上記URLにアクセス、右上のログインボタンからテスト用アカウントでログイン後、各種機能をお試し下さい。
+### 利用方法
+上記URLにアクセス、右上のログインボタンからテスト用アカウントでログイン後、各種機能をお試し下さい。<br>
 （新規アカウントの作成も可能です。）
 
 
@@ -35,14 +35,14 @@ PASSWORD:1qazxs
 
 実装した機能についてのGIFと説明
 
-# 今後の拡張予定
+## 今後の拡張予定
 - 学習機能の非同期化
 - 学習内容を検索結果に反映
 - コメント編集機能
 - コメントいいね機能
 - タグ付け機能
 
-# データベース設計
+## データベース設計
 
 ER図
 https://app.lucidchart.com/invitations/accept/48a520d9-d914-4bb5-9864-35a003d7be8c
@@ -91,6 +91,7 @@ https://app.lucidchart.com/invitations/accept/48a520d9-d914-4bb5-9864-35a003d7be
 | --------------- | ---------- | ------------------------------ |
 | user            | references | foreign_key: true              |
 | test            | references | foreign_key: true              |
+
 index [:user_id, :test_id], unique: true
 
 ### Association
@@ -110,10 +111,10 @@ index [:user_id, :test_id], unique: true
 - belongs_to :test
 
 
-# ローカルでの動作方法
-% git clone https://github.com/raikouo/nurse_app.git
-% cd nurse_app
-% bundle install
-% yarn install
-% rails db:create
-% rails db:migrate
+## ローカルでの動作方法
+% git clone https://github.com/raikouo/nurse_app.git<br>
+% cd nurse_app<br>
+% bundle install<br>
+% yarn install<br>
+% rails db:create<br>
+% rails db:migrate<br>

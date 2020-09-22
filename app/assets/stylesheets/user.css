@@ -1,0 +1,46 @@
+.field{
+  font-size:14px;
+  margin:2px;
+}
+
+
+.user-field {
+  width: 200px;
+  height:30px;
+  font-size:12px;
+  border:1px solid #c77812;
+  border-radius: 5px;
+  margin:2px;
+  padding-left:10px;
+}
+
+.edit-content {
+  width:70%;
+  margin: 20px auto;
+  background-color:rgba(255,200,200,0.7);
+  border-radius: 25px;
+  padding:10px 40px;
+}
+
+.edit-content p{
+  font-size:14px;
+}
+
+.p-notice {
+  border-bottom:1px dashed #c77812;
+}
+
+.edit-justify{
+  display:flex;
+  justify-content: space-between;
+
+}
+
+.edit-justify-box1{
+  width:40%;
+}
+
+.edit-justify-box2{
+  width:60%;
+  border-radius: 25px;
+}

@@ -12,19 +12,19 @@
         画像<br>
         <%= f.file_field :image, class: "file-field" %><br>
         第◯◯回<br>
-        <%= f.collection_select(:exam_id, Exam.all, :id, :name, {}, {class: "field"}) %><br>
+        <%= f.collection_select(:exam_id, Exam.all, :id, :name, {}, {class: "user-field"}) %><br>
         時間帯<br>
-        <%= f.collection_select(:zone_id, Zone.all, :id, :name, {}, {class: "field"}) %><br>
+        <%= f.collection_select(:zone_id, Zone.all, :id, :name, {}, {class: "user-field"}) %><br>
         番号<br>
-        <%= f.text_field :number, class: "field" %><br>
+        <%= f.text_field :number, class: "user-field" %><br>
         問題<br>
         <%= f.text_area :question, class: "text-area" %><br>
         選択肢<br>
         <%= f.text_area :choice, class: "text-area" %><br>
         答え<br>
-        <%= f.text_field :answer, class: "field" %><br>
+        <%= f.text_field :answer, class: "user-field" %><br>
         カテゴリー<br>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {},{class: "field"}) %><br>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {},{class: "user-field"}) %><br>
         
         <%= f.submit "出題する", class: "submit-btn" %><br>
 

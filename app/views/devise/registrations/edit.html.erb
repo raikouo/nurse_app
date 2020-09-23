@@ -42,13 +42,35 @@
             </div>
           <% end %>
         </div>
-<% @tests = Test.all %>
-        <div class = "edit-justify-box2">
         
-          <%= "#{Study.where(user_id:current_user.id).count}/#{@tests.count}問 学習済" %><br>
-          <%= "#{Exam.find(1).name}回：" %><%= "◯◯/#{@tests.where(exam_id:1).count}" %><br>
-          <%= "#{Exam.find(2).name}回：" %><%= "◯◯/#{@tests.where(exam_id:2).count}" %><br>
-          <%= "#{Exam.find(3).name}回：" %><%= "◯◯/#{@tests.where(exam_id:3).count}" %>
+        <div class = "edit-justify-box2">
+<%# テスト %>
+          <% @tests = Test.all %>
+          <% @studies = Study.where(user_id:current_user.id) %>
+          <br>
+          <%= "#{@studies.count}/#{@tests.count}問 学習済" %>
+          <%= "（#{(@studies.count.fdiv(@tests.count) * 100).round(1)}%）" %><br>
+          <br>
+          <% @cate1 = @tests.where(category_id:1) %>
+          <%= "#{Category.find(1).name}：" %><%= "#{@studies.where(test_id: @cate1.ids).count}/#{@cate1.count}" %>
+          <%= "（#{(@studies.where(test_id: @cate1.ids).count.fdiv(@cate1.count) * 100).round(1)}%）" %><br>
+          <% @cate2 = @tests.where(category_id:2) %>
+          <%= "#{Category.find(2).name}：" %><%= "#{@studies.where(test_id: @cate2.ids).count}/#{@cate2.count}" %>
+          <%= "（#{(@studies.where(test_id: @cate2.ids).count.fdiv(@cate2.count) * 100).round(1)}%）" %><br>
+          <% @cate3 = @tests.where(category_id:3) %>
+          <%= "#{Category.find(3).name}：" %><%= "#{@studies.where(test_id: @cate3.ids).count}/#{@cate3.count}" %>
+          <%= "（#{(@studies.where(test_id: @cate3.ids).count.fdiv(@cate3.count) * 100).round(1)}%）" %><br>
+          <br>
+          <% @exam1 = @tests.where(exam_id:1) %>
+          <%= "#{Exam.find(1).name}回：" %><%= "#{@studies.where(test_id: @exam1.ids).count}/#{@exam1.count}" %>
+          <%= "（#{(@studies.where(test_id: @exam1.ids).count.fdiv(@exam1.count) * 100).round(1)}%）" %><br>
+          <% @exam2 = @tests.where(exam_id:2) %>
+          <%= "#{Exam.find(2).name}回：" %><%= "#{@studies.where(test_id: @exam2.ids).count}/#{@exam2.count}" %>
+          <%= "（#{(@studies.where(test_id: @exam2.ids).count.fdiv(@exam2.count) * 100).round(1)}%）" %><br>
+          <% @exam3 = @tests.where(exam_id:3) %>
+          <%= "#{Exam.find(3).name}回：" %><%= "#{@studies.where(test_id: @exam3.ids).count}/#{@exam3.count}" %>
+          <%= "（#{(@studies.where(test_id: @exam3.ids).count.fdiv(@exam3.count) * 100).round(1)}%）" %><br>
+<%# /テスト %>
         </div>
 
       </div>

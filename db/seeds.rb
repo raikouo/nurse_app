@@ -496,20 +496,20 @@ Test.create(
   category_id: 2
 )
 #image
-Test.create(
-  user_id:1,
-  exam_id:2,
-  zone_id:1,
-  number:64,
-  question: "日本における母の年齢階級別出生率の推移を図に示す。
-  図の矢印で示してある年齢階級はどれか。",
-  choice: "20〜24歳
-25〜29歳
-30〜34歳
-35〜39歳",
-  answer: 3,
-  category_id: 2
-)
+# Test.create(
+#   user_id:1,
+#   exam_id:2,
+#   zone_id:1,
+#   number:64,
+#   question: "日本における母の年齢階級別出生率の推移を図に示す。
+#   図の矢印で示してある年齢階級はどれか。",
+#   choice: "20〜24歳
+# 25〜29歳
+# 30〜34歳
+# 35〜39歳",
+#   answer: 3,
+#   category_id: 2
+# )
 Test.create(
   user_id:1,
   exam_id:2,
@@ -885,19 +885,19 @@ Test.create(
   category_id: 2
 )
 #image
-Test.create(
-  user_id:1,
-  exam_id:3,
-  zone_id:2,
-  number:64,
-  question: "新生児の反応の図を示す。Moro<モロー>反射はどれか。",
-  choice: "1
-2
-3
-4",
-  answer: 3,
-  category_id: 2
-)
+# Test.create(
+#   user_id:1,
+#   exam_id:3,
+#   zone_id:2,
+#   number:64,
+#   question: "新生児の反応の図を示す。Moro<モロー>反射はどれか。",
+#   choice: "1
+# 2
+# 3
+# 4",
+#   answer: 3,
+#   category_id: 2
+# )
 Test.create(
   user_id:1,
   exam_id:3,

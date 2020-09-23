@@ -1,43 +1,82 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%= render "shared/header" %>
+<div class = "main-wrapper" >
+  <div class = "left-wrapper">
   </div>
+  <div class = "contents-wrapper" >
+    <div class = "edit-content" >
+      <p class = "p-notice">登録内容の変更には現在のパスワードの入力が必要です。</p>
+      <div class = "edit-justify">
+        <div class = "edit-justify-box1">
+          
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+            <div class="field">
+              <%= f.label :nickname %><br />
+              <%= f.text_field :nickname, autocomplete: "nickname", class: "user-field", disabled: 'disabled' %>
+            </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autocomplete: "email", class: "user-field" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %> <p>変更しない場合は空欄にして下さい。</p>
+              <%= f.password_field :password, autocomplete: "new-password", class: "user-field" %>
+
+            </div>
+
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-field" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :current_password %><br />
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "user-field" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "変更する", class: "submit-btn" %>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class = "edit-justify-box2">
+<%# テスト %>
+          <% @tests = Test.all %>
+          <% @studies = Study.where(user_id:current_user.id) %>
+          <br>
+          <%= "#{@studies.count}/#{@tests.count}問 学習済" %>
+          <%= "（#{(@studies.count.fdiv(@tests.count) * 100).round(1)}%）" %><br>
+          <br>
+          <% @cate1 = @tests.where(category_id:1) %>
+          <%= "#{Category.find(1).name}：" %><%= "#{@studies.where(test_id: @cate1.ids).count}/#{@cate1.count}" %>
+          <%= "（#{(@studies.where(test_id: @cate1.ids).count.fdiv(@cate1.count) * 100).round(1)}%）" %><br>
+          <% @cate2 = @tests.where(category_id:2) %>
+          <%= "#{Category.find(2).name}：" %><%= "#{@studies.where(test_id: @cate2.ids).count}/#{@cate2.count}" %>
+          <%= "（#{(@studies.where(test_id: @cate2.ids).count.fdiv(@cate2.count) * 100).round(1)}%）" %><br>
+          <% @cate3 = @tests.where(category_id:3) %>
+          <%= "#{Category.find(3).name}：" %><%= "#{@studies.where(test_id: @cate3.ids).count}/#{@cate3.count}" %>
+          <%= "（#{(@studies.where(test_id: @cate3.ids).count.fdiv(@cate3.count) * 100).round(1)}%）" %><br>
+          <br>
+          <% @exam1 = @tests.where(exam_id:1) %>
+          <%= "#{Exam.find(1).name}回：" %><%= "#{@studies.where(test_id: @exam1.ids).count}/#{@exam1.count}" %>
+          <%= "（#{(@studies.where(test_id: @exam1.ids).count.fdiv(@exam1.count) * 100).round(1)}%）" %><br>
+          <% @exam2 = @tests.where(exam_id:2) %>
+          <%= "#{Exam.find(2).name}回：" %><%= "#{@studies.where(test_id: @exam2.ids).count}/#{@exam2.count}" %>
+          <%= "（#{(@studies.where(test_id: @exam2.ids).count.fdiv(@exam2.count) * 100).round(1)}%）" %><br>
+          <% @exam3 = @tests.where(exam_id:3) %>
+          <%= "#{Exam.find(3).name}回：" %><%= "#{@studies.where(test_id: @exam3.ids).count}/#{@exam3.count}" %>
+          <%= "（#{(@studies.where(test_id: @exam3.ids).count.fdiv(@exam3.count) * 100).round(1)}%）" %><br>
+<%# /テスト %>
+        </div>
+
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class = "right-wrapper">
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
+<%= render "shared/footer" %>

@@ -35,7 +35,9 @@
       <% end %>
       <%# /search %>
     </div>
-    
+    <div class = "search-content" >
+      <p><%= "検索結果：#{@results.count}問" %>
+    </div>
     <%if @results.count != 0 %>
       <% @results.each do |result| %>
         <div class = "exam-content" >

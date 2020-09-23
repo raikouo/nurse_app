@@ -2,21 +2,23 @@
 ExamApp
 
 ## アプリケーション概要
-試験問題の過去問を学習するアプリケーションです。学習内容を記録し、効率的な学習を支援します。<br>
+試験問題の過去問を学習するアプリケーションです。<br>
 今回は作成者の経歴にちなんで看護師国家試験の過去問をサンプルデータとして登録しています。<br>
-今後、他の問題形式にも対応出来るよう機能を拡張していきたいです。
 
 ## 作成の目的・動機
-
-携帯等の端末で
+空き時間を利用して、携帯等の端末で手軽に自己学習を行う事を目的に作成しました。<br>
+自己学習内容の記録が行える事で、効率的な学習を支援します。<br>
+今後、他の問題形式にも対応できるよう機能を拡張していきたいです。
 
 ## URL
+```
 http://exam-28713.herokuapp.com/
-
+```
 ### テスト用アカウント
+```
 USER: admin@example.com<br>
 PASSWORD: 1qazxs
-
+```
 ### 利用方法
 上記URLにアクセスし、右上のログインボタンからテスト用アカウントでログイン後、各種機能をお試し下さい。<br>
 （新規アカウントの作成も可能です。）
@@ -24,22 +26,23 @@ PASSWORD: 1qazxs
 - ユーザー登録機能<br>
 ログインユーザーに応じた画面表示や、機能の追加を行う為に必要な機能です。<br>
 deviseのgemを使用して実装しています。<br>
-![login](https://user-images.githubusercontent.com/68745761/94021474-03bdc180-fdef-11ea-9e82-9038df9f0c37.gif)<br>
+![login](https://user-images.githubusercontent.com/68745761/94021474-03bdc180-fdef-11ea-9e82-9038df9f0c37.gif)<br><br>
 - 検索機能<br>
 アプリケーションの肝となる機能です。<br>
 ransackのgemを使用して実装しています。複数条件を指定しての検索を行う事が出来ます。<br>
-![search](https://user-images.githubusercontent.com/68745761/94021495-08827580-fdef-11ea-83e7-04e06130e01e.gif)<br>
+![search](https://user-images.githubusercontent.com/68745761/94021495-08827580-fdef-11ea-83e7-04e06130e01e.gif)<br><br>
 - 学習済みチェック機能<br>
 学習状況を把握し、効率的な学習を支援する為の機能です。<br>
+問題の選択肢をクリックする事で正誤の判定及び、学習済（未）の切り替えボタンが表示されます。
 - ユーザー編集機能<br>
 ユーザーの利便性を向上する為の機能です。<br>
 ログイン後、右上のユーザー名をクリックする事でマイページにとべます。<br>
 学習状況の把握や、メールアドレス、パスワードの変更が行えます。<br>
-![study_edit](https://user-images.githubusercontent.com/68745761/94021505-0a4c3900-fdef-11ea-985b-05ad314f838a.gif)<br>
+![study_edit](https://user-images.githubusercontent.com/68745761/94021505-0a4c3900-fdef-11ea-985b-05ad314f838a.gif)<br><br>
 - コメント機能<br>
 コメントによる解説やユーザー同士の交流を図る為の機能です。<br>
 ログインユーザーは問題詳細画面でコメントを投稿する事が出来ます。<br>
-![comment](https://user-images.githubusercontent.com/68745761/94021501-091b0c00-fdef-11ea-86cb-5510a6996977.gif)<br>
+![comment](https://user-images.githubusercontent.com/68745761/94021501-091b0c00-fdef-11ea-86cb-5510a6996977.gif)<br><br>
 - 問題登録機能<br>
 管理者側で問題を準備することを想定していますが、今回はテストの為問題登録も行えるようにしています。<br>
 TOPページ左上のnewから出題画面にとべます。画像付きの問題も出題可能になっています。

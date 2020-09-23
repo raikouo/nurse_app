@@ -11,12 +11,11 @@ ExamApp
 今後、他の問題形式にも対応できるよう機能を拡張していきたいです。
 
 ## URL
-```
 http://exam-28713.herokuapp.com/
-```
+
 ### テスト用アカウント
 ```
-USER: admin@example.com<br>
+USER: admin@example.com
 PASSWORD: 1qazxs
 ```
 ### 利用方法

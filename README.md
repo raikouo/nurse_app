@@ -23,23 +23,27 @@ PASSWORD: 1qazxs
 
 - ユーザー登録機能<br>
 ログインユーザーに応じた画面表示や、機能の追加を行う為に必要な機能です。<br>
-deviseのgemを使用して実装しています。
+deviseのgemを使用して実装しています。<br>
 ![login](https://user-images.githubusercontent.com/68745761/94021474-03bdc180-fdef-11ea-9e82-9038df9f0c37.gif)
+<br>
 - 検索機能<br>
 アプリケーションの肝となる機能です。<br>
-ransackのgemを使用して実装しています。複数条件を指定しての検索を行う事が出来ます。
+ransackのgemを使用して実装しています。複数条件を指定しての検索を行う事が出来ます。<br>
 ![search](https://user-images.githubusercontent.com/68745761/94021495-08827580-fdef-11ea-83e7-04e06130e01e.gif)
 - 学習済みチェック機能<br>
 学習状況を把握し、効率的な学習を支援する為の機能です。<br>
+<br>
 - ユーザー編集機能<br>
 ユーザーの利便性を向上する為の機能です。<br>
 ログイン後、右上のユーザー名をクリックする事でマイページにとべます。<br>
-学習状況の把握や、メールアドレス、パスワードの変更が行えます。
+学習状況の把握や、メールアドレス、パスワードの変更が行えます。<br>
 ![study_edit](https://user-images.githubusercontent.com/68745761/94021505-0a4c3900-fdef-11ea-985b-05ad314f838a.gif)
+<br>
 - コメント機能<br>
 コメントによる解説やユーザー同士の交流を図る為の機能です。<br>
-ログインユーザーは問題詳細画面でコメントを投稿する事が出来ます。
+ログインユーザーは問題詳細画面でコメントを投稿する事が出来ます。<br>
 ![comment](https://user-images.githubusercontent.com/68745761/94021501-091b0c00-fdef-11ea-86cb-5510a6996977.gif)
+<br>
 - 問題登録機能<br>
 管理者側で問題を準備することを想定していますが、今回はテストの為問題登録も行えるようにしています。<br>
 TOPページ左上のnewから出題画面にとべます。画像付きの問題も出題可能になっています。
@@ -50,6 +54,23 @@ TOPページ左上のnewから出題画面にとべます。画像付きの問�
 - コメント編集機能
 - コメントいいね機能
 - タグ付け機能
+
+## 言語・デプロイ・開発環境
+- Ruby on Rails 6.0.0
+- Ruby 2.6.5
+- mysql2
+- GitHub
+- AWS
+- Visual Studio Code
+- heroku
+
+## ローカルでの動作方法
+% git clone https://github.com/raikouo/nurse_app.git<br>
+% cd nurse_app<br>
+% bundle install<br>
+% yarn install<br>
+% rails db:create<br>
+% rails db:migrate<br>
 
 ## データベース設計
 
@@ -118,12 +139,3 @@ index [:user_id, :test_id], unique: true
 ### Association
 - belongs_to :user
 - belongs_to :test
-
-
-## ローカルでの動作方法
-% git clone https://github.com/raikouo/nurse_app.git<br>
-% cd nurse_app<br>
-% bundle install<br>
-% yarn install<br>
-% rails db:create<br>
-% rails db:migrate<br>

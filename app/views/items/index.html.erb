@@ -52,9 +52,9 @@
           <% end %>
           <%if user_signed_in? %>
             <% if !Study.exists?(user_id:current_user.id,test_id:test.id) %>
-              <%= link_to image_tag("tako.png", class: "octopus-false", 'title': "クリックで学習済" ), item_studies_path(test.id), method: :post %>
+              <%= link_to "覚えた", item_studies_path(test.id), method: :post, class: "btn-flat-stripe", 'title': "クリックで学習済" %>
             <% else %>
-              <%= link_to image_tag("tako_sumi.png", class: "octopus-true", 'title': "クリックで学習未" ), item_study_path(test.id,test.id), method: :delete %>
+              <%= link_to "忘れた", item_study_path(test.id, test.id), method: :delete, class: "btn-flat-stripe2", 'title': "クリックで学習未" %>
             <% end %>
           <% end %>
         <% end %>

@@ -57,6 +57,7 @@ TOPページ左上のnewから出題画面にとべます。画像付きの問�
 ## 言語・デプロイ・開発環境
 - Ruby on Rails 6.0.0
 - Ruby 2.6.5
+- jquery
 - mysql2
 - GitHub
 - AWS

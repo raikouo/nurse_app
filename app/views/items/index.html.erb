@@ -3,7 +3,7 @@
   <div class = "left-wrapper" >
   </div>
   <div class = "contents-wrapper" >
-    <%= link_to 'new', new_item_path %>
+    <%= link_to 'new', new_item_path, class:"test-new" %>
     <div class = "exam-content" >
       <p>ランダム出題</p><br>
       <% @tests.sample(1).each do |test| %>

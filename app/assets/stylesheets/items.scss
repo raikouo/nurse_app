@@ -39,6 +39,7 @@
   background: linear-gradient(-135deg,rgba(154,205,50,0.8), rgba(154,205,50,1));
   border-top-right-radius: 50px;
   border-top-left-radius: 50px;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
 
 .exam-content {
@@ -48,6 +49,7 @@
   border-radius: 25px;
   padding:10px 40px;
   word-wrap: break-word;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
   // fadein
   opacity : 0;
 	visibility: hidden;
@@ -66,6 +68,7 @@
   background-color:rgba(255,200,200,0.7);
   border-radius: 25px;
   padding:10px 40px;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
 
 .search-justify{
@@ -216,6 +219,7 @@
   background-color: rgba(255,200,200,0.7);
   border-radius: 25px;
   padding:10px 40px;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
 
 .comment-area{
